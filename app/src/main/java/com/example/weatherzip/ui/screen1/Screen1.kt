@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.weatherzip.BuildConfig
-import com.example.weatherzip.R
 import com.example.weatherzip.checkLocationPermission
 import com.example.weatherzip.databinding.FragmentScreen1Binding
 import com.example.weatherzip.isFineLocationPermissionGranted
@@ -39,7 +38,7 @@ class Screen1 : Fragment(), LocationListener {
         val view = binding.root
         observeZipCode()
         observeNearbyZipCodes()
-        addZipClickListener()
+        addZipCodeClickListener()
         return view
     }
     override fun onStart() {
@@ -68,14 +67,16 @@ class Screen1 : Fragment(), LocationListener {
                     ListAdapter.OnClickListener{
                         findNavController().navigate(Screen1Directions.actionScreen1ToScreen2(it))
                     })
-                Log.i("NEARBYZIPS",it.entries.toString())
             }
         })
     }
     private fun observeZipCode(){
         viewModel.zipCode.observe(viewLifecycleOwner,{
+            val sb = StringBuilder()
+            sb.append("Your zipcode is: ")
+            sb.append(it.first)
             Log.i("ZIPCode",it.toString())
-            binding.defaultZip.text =  "Your zipcode is: "+it.first
+            binding.defaultZip.text =  sb.toString()
         })
     }
     private fun getLocation() {
@@ -94,7 +95,7 @@ class Screen1 : Fragment(), LocationListener {
             com.example.weatherzip.requestPermissions(requireActivity())
         }
     }
-    fun addZipClickListener(){
+    fun addZipCodeClickListener(){
         binding.button.setOnClickListener {
             val zip = binding.editZip.text.toString().trim()
             val  lat = binding.editLat.text.toString().trim()

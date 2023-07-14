@@ -167,7 +167,7 @@ class LocationViewModel @Inject constructor(
     }
 
     fun addZipCode(zip: String, lat: Double, lon: Double) {
-        _nearByzipCodes.value?.put(zip, Pair(lat, lon))
+        map.put(zip, Pair(lat,lon))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
