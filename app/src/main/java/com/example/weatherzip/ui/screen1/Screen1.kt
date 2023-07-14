@@ -97,11 +97,15 @@ class Screen1 : Fragment(), LocationListener {
     }
     fun addZipCodeClickListener(){
         binding.button.setOnClickListener {
-            val zip = binding.editZip.text.toString().trim()
+            val zip = binding.editZip.text.toString()
             val  lat = binding.editLat.text.toString().trim()
             val lon = binding.editLon.text.toString().trim()
             if(zip.isNotEmpty() && lat.isNotEmpty() && lon.isNotEmpty()){
                 viewModel.addZipCode(zip,lat.toDouble(),lon.toDouble())
+                binding.editZip.setText("")
+                binding.editLat.setText("")
+                binding.editLon.setText("")
+                observeNearbyZipCodes()
             }
         }
     }
