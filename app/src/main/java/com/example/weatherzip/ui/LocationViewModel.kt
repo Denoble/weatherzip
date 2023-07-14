@@ -122,9 +122,8 @@ class LocationViewModel @Inject constructor(
         val location = result.geometry.location
         result.addressComponents.forEach {
             if (it.types[0] == "postal_code") {
-                if (isNearby) {
-                    map.put(it.longName, Pair(location.lat, location.lng))
-                } else {
+                map.put(it.longName, Pair(location.lat, location.lng))
+                if (!isNearby) {
                     _zipCode.value = Triple(it.longName, location.lat, location.lng)
                 }
 
