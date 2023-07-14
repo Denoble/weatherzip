@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "523977881455",
+    "project_id": "weatherzip-1f650",
+    "storage_bucket": "weatherzip-1f650.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523977881455:android:620c5c836595b4c25bda9a",
+        "android_client_info": {
+          "package_name": "com.example.weatherzip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523977881455-t1a3f67hch2o27ga0tshuif3q7giogf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR49Wp4H0g7S30jPPOZD1HLWMYK0NYIKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523977881455-t1a3f67hch2o27ga0tshuif3q7giogf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
