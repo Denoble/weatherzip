@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navController = findNavController(R.id.nav_host_fragment)
         appBarConfiguration = AppBarConfiguration(navController.graph)
+        viewModel.setTempMetric("fahrenheit")
         //setupActionBarWithNavController(navController, appBarConfiguration)
     }
 

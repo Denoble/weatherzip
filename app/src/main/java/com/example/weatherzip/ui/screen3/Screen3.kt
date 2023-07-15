@@ -1,12 +1,15 @@
 package com.example.weatherzip.ui.screen3
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.weatherzip.R
 import com.example.weatherzip.databinding.FragmentScreen3Binding
+import com.example.weatherzip.ui.LocationViewModel
 
 
 /**
@@ -16,6 +19,7 @@ import com.example.weatherzip.databinding.FragmentScreen3Binding
  */
 class Screen3 : Fragment() {
  lateinit var binding:FragmentScreen3Binding
+ val viewModel:LocationViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -27,23 +31,38 @@ class Screen3 : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentScreen3Binding.inflate(inflater,container,false)
         val view =binding.root
+        radioButtonCheckListener()
+        observeRadioMetric()
         return view
     }
+    fun radioButtonCheckListener(){
+        binding.radioGroup.setOnCheckedChangeListener { radioGroup, i ->
+            when(i){
+                 R.id.radio_celcius ->{
+                    viewModel.setTempMetric("Celcius")
+                }
+                R.id.radio_fahrenheit ->{
+                    viewModel.setTempMetric("Fahrenheit")
+                }else->{
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Screen3.
-         */
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Screen3().apply {
-                arguments = Bundle().apply {
                 }
             }
+
+        }
+    }
+    fun observeRadioMetric(){
+        viewModel.tempMetric.observe(viewLifecycleOwner,{
+            Log.i("Screen3 ",it )
+            when(it.lowercase()){
+                "fahrenheit" ->{
+                    binding.radioGroup.check(
+                        binding.radioGroup.getChildAt(1).id)
+                }
+                "celcius" ->{
+                    binding.radioGroup.check(
+                        binding.radioGroup.getChildAt(0).id)
+                }else ->{}
+            }
+        })
     }
 }

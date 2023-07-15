@@ -25,6 +25,9 @@
     <argument
         android:name="zipCode"
         app:argType="string"/>
+    <action
+        android:id="@+id/action_screen2_to_screen3"
+        app:destination="@id/screen3" />
   </fragment>
   <fragment
       android:id="@+id/screen3"

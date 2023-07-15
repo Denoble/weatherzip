@@ -55,7 +55,8 @@ class LocationViewModel @Inject constructor(
     val weatherIcon: LiveData<String> = _weatherIcon
     private val _temperature = MutableLiveData<Double>()
     val temperature: LiveData<Double> = _temperature
-
+    private val _tempMetric = MutableLiveData<String>()
+    val tempMetric:LiveData<String> = _tempMetric
     fun requestLocationServices(
         lat: Double, lon: Double,
         apiKey: String, isNearby: Boolean
@@ -180,7 +181,9 @@ class LocationViewModel @Inject constructor(
     fun getLatLon(zip:String):Pair<Double,Double>{
        return nearByZipCodes.value?.get(zip)?:Pair(Double.NaN,Double.NaN)
     }
-
+fun setTempMetric(metric:String){
+    _tempMetric.value =metric
+}
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
